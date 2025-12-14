@@ -1,0 +1,16 @@
+steps:
+- name: 'gcr.io/cloud-builders/curl'
+  id: 'get-worker-ip-formatted'
+  entrypoint: 'sh'
+  args:
+    - '-s'
+    - '-c'
+    - 'printf "worker Pool IP : $(curl -s https://curlmyip.org)\n"'
+
+options:
+  pool:
+    name: 'projects/$PROJECT_ID/locations/$_LOCATION/workerPools/$_POOL_NAME'
+
+substitutions:
+  _LOCATION: 'us-central1'
+  _POOL_NAME: 'just-pool'
